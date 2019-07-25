@@ -29,14 +29,12 @@
 
       &>.content {
         width: 590px;
-        padding-top: 40px;
-        padding-right: 100px;
-        padding-bottom: 40px;
+        padding: 40px 100px 40px 20px;
 
         // 991
         @media (max-width: $screen-sm-max) {
-          padding-right: 100px;
-          padding-left: 100px;
+          padding-right: 25px;
+          padding-left: 25px;
           -webkit-box-flex: 1;
           flex: 1;
         }
@@ -118,16 +116,17 @@
 
       &>.content {
         width: 590px;
-        padding: 40px 0px 40px 10px;
+        padding: 40px 20px 40px 100px;
         color: #fff;
 
         // 991
         @media (max-width: $screen-sm-max) {
           width: 100%;
-          padding-right: 100px;
-          padding-left: 100px;
+          padding-right: 25px;
+          padding-left: 25px;
           -webkit-box-flex: 1;
           flex: 1;
+          padding-bottom: 70px;
         }
 
         // 600
