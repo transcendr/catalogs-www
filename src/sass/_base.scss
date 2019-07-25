@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $fs-1;
+  line-height: $base-sizing;
+
+  @media (min-width: $screen-md-min) {
+    font-size: $fs-2;
+  }
+}
+
+body {
+  font-family: $ff-base;
+  color: $c-text;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.show {
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.show-flex {
+  display: flex !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+ul {
+  list-style-type: disc;
+}

@@ -1,0 +1,145 @@
+@import "../shared";
+
+.catalogs_list {
+  min-height: 200px;
+
+
+}
+
+.clist {
+  &__container {
+    display: flex;
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+
+  &__categories {
+    padding: 30px 15px;
+    background-color: #f3f3f3;
+
+    &_header {
+      padding-bottom: 15px;
+      font-size: 1.1rem;
+      line-height: 1.3rem;
+      font-weight: 600;
+    }
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: 10px;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-weight: 400;
+  }
+
+  &__grid {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 1250px;
+    justify-self: stretch;
+    justify-content: stretch;
+    align-content: start;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    //grid
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+
+    @media (max-width: $screen-sm-max) {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+
+  &__catalog {
+    display: flex;
+    max-width: 200px;
+    padding-bottom: 30px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    background-color: #fff;
+
+    &_actions {
+      width: 100%;
+      -webkit-box-flex: 1;
+      flex: 1;
+      background-color: hsla(0, 0%, 100%, 0.67);
+    }
+
+    &_favorite {
+      display: block;
+      width: 40px;
+      height: 40px;
+      float: right;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    &_image {
+      display: flex;
+      width: 210px;
+      height: 262px;
+      min-height: 20px;
+      margin-right: auto;
+      margin-left: auto;
+      -webkit-box-align: end;
+      align-items: flex-end;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #b4b4b4;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background-image: url(https://uploads-ssl.webflow.com/5d139c24cb2826b69b8a6cc5/5d1fa369055c61caf8a83a5e_catalog-espyours.jpg);
+      background-position: 0px 0px;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    &_title {
+      padding-top: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+    }
+
+    &_details {
+      display: flex;
+      min-height: 10px;
+      margin-top: 10px;
+
+      &_price {
+        padding-right: 20px;
+        align-self: center;
+        font-size: 1rem;
+        line-height: 1.3rem;
+      }
+
+      &_btn {
+        -webkit-box-flex: 1;
+        flex: 1;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+        text-align: center;
+        display: inline-block;
+        padding: 9px 15px;
+        background-color: #3898EC;
+        color: white;
+        border: 0;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{ catalogListings(condition: {current: true, viewable: 0, class: "Catalog request and e-catalog"}) { id class flatFee longDescription } }
+21:38
+Guest
+
+{ catalogListings(condition: {current: true, viewable: 0, class: "Catalog request and e-catalog"}) { id class flatFee longDescription departmentByPrimaryDepartment { id nameUrl } } }

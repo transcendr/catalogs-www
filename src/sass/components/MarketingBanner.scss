@@ -1,0 +1,187 @@
+@import "../shared";
+
+.marketing_banner {
+  display: flex;
+  margin-top: 80px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: $screen-sm-max) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+  }
+
+  &__col {
+    -webkit-box-flex: 1;
+    flex: 1;
+    background-color: #eaeaea;
+
+    &.__left {
+      display: flex;
+      min-height: 298px;
+      -webkit-box-pack: end;
+      justify-content: flex-end;
+
+      @media (max-width: $screen-sm-max) {
+        align-self: stretch;
+      }
+
+      &>.content {
+        width: 590px;
+        padding-top: 40px;
+        padding-right: 100px;
+        padding-bottom: 40px;
+
+        // 991
+        @media (max-width: $screen-sm-max) {
+          padding-right: 100px;
+          padding-left: 100px;
+          -webkit-box-flex: 1;
+          flex: 1;
+        }
+
+        // 600
+        @media (max-width: $screen-sm-min) {
+          padding-right: 25px;
+          padding-left: 25px;
+        }
+
+        &>.headline {
+          margin-bottom: 20px;
+          font-size: 1.8rem;
+          line-height: 2rem;
+          font-weight: 600;
+        }
+
+        &>.text {
+          margin-bottom: 20px;
+          font-size: 1rem;
+          line-height: 1.3rem;
+          font-weight: 400;
+        }
+
+        &>.bullets {
+          margin-top: 0;
+          margin-bottom: 10px;
+          padding-left: 40px;
+
+          &>li {
+            padding-bottom: 13px;
+            font-size: 1rem;
+            line-height: 1.3rem;
+            font-weight: 400;
+          }
+        }
+
+        &>.btn {
+          font-weight: bold;
+          font-size: 1rem;
+          padding: 9px 15px;
+          padding-right: 40px;
+          padding-left: 40px;
+          border-radius: 31px;
+          display: inline-block;
+          background-color: #3898EC;
+          color: white;
+          border: 0;
+          line-height: inherit;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.__middle {
+      min-height: 298px;
+      min-width: 204px;
+      -webkit-box-flex: 0;
+      flex: 0 auto;
+      background-color: #000;
+      background-image: url(https://uploads-ssl.webflow.com/5d139c24cb2826b69b8a6cc5/5d1fdb91946d40794c64d9ec_marketing-banner-bg.png);
+      background-position: 46% 50%;
+      background-size: auto;
+      background-repeat: no-repeat;
+
+      @media (max-width: $screen-sm-max) {
+        display: none;
+      }
+    }
+
+    &.__right {
+      min-height: 298px;
+      background-color: #2f3e75;
+
+      @media (max-width: $screen-sm-max) {
+        align-self: stretch;
+      }
+
+      &>.content {
+        width: 590px;
+        padding: 40px 0px 40px 10px;
+        color: #fff;
+
+        // 991
+        @media (max-width: $screen-sm-max) {
+          width: 100%;
+          padding-right: 100px;
+          padding-left: 100px;
+          -webkit-box-flex: 1;
+          flex: 1;
+        }
+
+        // 600
+        @media (max-width: $screen-sm-min) {
+          padding-right: 25px;
+          padding-left: 25px;
+        }
+
+        &>.headline {
+          margin-bottom: 20px;
+          font-size: 1.8rem;
+          line-height: 2rem;
+          font-weight: 600;
+        }
+
+        &>.text {
+          margin-bottom: 20px;
+          font-size: 1rem;
+          line-height: 1.3rem;
+          font-weight: 400;
+        }
+
+        &>.bullets {
+          margin-top: 0;
+          margin-bottom: 10px;
+          padding-left: 40px;
+
+          &>li {
+            padding-bottom: 13px;
+            font-size: 1rem;
+            line-height: 1.3rem;
+            font-weight: 400;
+          }
+        }
+
+        &>.btn {
+          float: right;
+          background-color: #fff;
+          color: #333;
+          font-weight: bold;
+          font-size: 1rem;
+          padding: 9px 15px;
+          padding-right: 40px;
+          padding-left: 40px;
+          border-radius: 31px;
+          display: inline-block;
+          border: 0;
+          line-height: inherit;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+
+
+    }
+  }
+}

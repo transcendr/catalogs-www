@@ -1,0 +1,12 @@
+@import "../shared";
+
+.glider {
+  padding: 40px 40px 0px;
+
+  & img {
+    display: block;
+    max-width: 1400px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

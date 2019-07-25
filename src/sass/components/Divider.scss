@@ -1,0 +1,15 @@
+@import "../shared";
+
+.divider {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  &__line {
+    width: 80%;
+    height: 1px;
+    max-width: 1024px;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: 1px solid #ddd;
+  }
+}
