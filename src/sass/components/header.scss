@@ -1,11 +1,23 @@
 @import "../shared";
 
 .header {
-  max-height: 70px;
-  margin-top: 20px;
+  // Static
+  // max-height: 70px;
+  // margin-top: 20px;
+  // padding-right: 30px;
+  // padding-left: 30px;
+  // padding-bottom: 20px;
+
+  // Fixed Position
+  max-height: 80px;
+  padding-top: 10px;
   padding-right: 30px;
   padding-left: 30px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
 
   @media (max-width: $screen-sm-max) {
     display: none;
@@ -13,11 +25,23 @@
 
   &_mobile {
     display: none;
-    max-height: 70px;
-    margin-top: 20px;
+    // Static
+    // max-height: 70px;
+    // margin-top: 20px;
+    // padding-right: 30px;
+    // padding-left: 30px;
+    // padding-bottom: 20px;
+
+    // Fixed
+    max-height: 80px;
+    padding-top: 10px;
     padding-right: 30px;
     padding-left: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
 
     @media (max-width: $screen-sm-max) {
       display: block;

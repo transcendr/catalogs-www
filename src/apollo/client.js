@@ -3,11 +3,15 @@ import fetch from "isomorphic-fetch"
 import { cache } from "apollo/cache"
 import { resolvers, typeDefs } from "apollo/resolvers"
 
-let apiBaseURL = `http://localhost:5001/catalogs-dev/us-central1/api/graphql`
+let apiBaseURL = `http://graphql.catalogshub.com/catalogs`
 
 const defaultClientData = {
   data: {
     sidebarOpen: false,
+    filteredCatalogs: [
+      { coverUrl: "cover1", __typename: "FilteredCatalog" },
+      { coverUrl: "cover2", __typename: "FilteredCatalog" },
+    ],
   },
 }
 

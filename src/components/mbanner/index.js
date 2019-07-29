@@ -5,12 +5,12 @@ const MarketingBanner = () => (
   <div className="marketing_banner">
     <div className="marketing_banner__col __left">
       <div className="content">
-        <div class="headline">Are You a Business?</div>
-        <div class="text">
+        <div className="headline">Are You a Business?</div>
+        <div className="text">
           Catalogs.com only features the top rated and most trusted stores &amp;
           catalogs. &nbsp;Apply to have your company listed.
         </div>
-        <ul class="bullets">
+        <ul className="bullets">
           <li>
             Nullam cursus tincidunt cursus. Quisque vehicula urna ligula, eu
             pellentesque augue vulputate et.
@@ -29,14 +29,14 @@ const MarketingBanner = () => (
     </div>
     <div className="marketing_banner__col __middle"></div>
     <div className="marketing_banner__col __right">
-      <div class="content">
-        <div class="headline">Discover Dynalog</div>
-        <div class="text">
+      <div className="content">
+        <div className="headline">Discover Dynalog</div>
+        <div className="text">
           Nullam cursus tincidunt cursus. Quisque vehicula urna ligula, eu
           pellentesque augue vulputate et. Nullam cursus tincidunt cursus.
           Quisque vehicula urna ligula, eu pellentesque augue vulputate et.
         </div>
-        <ul class="bullets">
+        <ul className="bullets">
           <li>
             Nullam cursus tincidunt cursus. Quisque vehicula urna ligula, eu
             pellentesque augue vulputate et.

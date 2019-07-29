@@ -27,6 +27,7 @@ module.exports = {
         src: path.join(__dirname, "src"),
         components: path.join(__dirname, "src/components"),
         styles: path.join(__dirname, "src/sass"),
+        utils: path.join(__dirname, "src/utils"),
       },
     },
     `gatsby-plugin-react-helmet`,
