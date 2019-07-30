@@ -5,6 +5,17 @@ export const SIDEBAR_OPEN = gql`
     sidebarOpen @client
   }
 `
+export const FILTERED_DEPARTMENTS = gql`
+  query GetFilteredDepartments {
+    filteredDepartments @client
+  }
+`
+
+export const GLIDER_COVERS = gql`
+  query GetGliderCovers {
+    gliderCovers @client
+  }
+`
 
 export const GET_CATALOGS = gql`
   query GetAllCatalogs {
@@ -26,7 +37,16 @@ export const GET_CATALOGS = gql`
 export const GET_FILTERED_CATALOGS = gql`
   query GetFilteredCatalogs {
     filteredCatalogs @client {
-      coverUrl
+      coverUrl @client
+      class @client
+      current @client
+      catalogTitle @client
+      departmentByPrimaryDepartment @client {
+        id @client
+        description @client
+        nameUrl @client
+        altText @client
+      }
     }
   }
 `

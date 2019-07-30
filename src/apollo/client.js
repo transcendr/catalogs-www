@@ -2,16 +2,22 @@ import ApolloClient from "apollo-boost"
 import fetch from "isomorphic-fetch"
 import { cache } from "apollo/cache"
 import { resolvers, typeDefs } from "apollo/resolvers"
+import {
+  GET_CATALOGS,
+  GET_FILTERED_CATALOGS,
+  FILTERED_DEPARTMENTS,
+  GLIDER_COVERS,
+} from "apollo/queries"
 
 let apiBaseURL = `http://graphql.catalogshub.com/catalogs`
 
 const defaultClientData = {
   data: {
     sidebarOpen: false,
-    filteredCatalogs: [
-      { coverUrl: "cover1", __typename: "FilteredCatalog" },
-      { coverUrl: "cover2", __typename: "FilteredCatalog" },
-    ],
+    filteredCatalogs: [],
+    filteredDepartments: [],
+    filteredKeyword: "",
+    gliderCovers: [],
   },
 }
 
@@ -30,3 +36,33 @@ export const client = new ApolloClient({
 if (typeof window !== "undefined") {
   window.__APOLLO_CLIENT__ = client
 }
+
+// Query all catalogs on page load
+client.query({ query: GET_CATALOGS }).then(result => {
+  const {
+    data: { catalogListings },
+  } = result
+
+  client.writeQuery({
+    query: GET_FILTERED_CATALOGS,
+    data: {
+      filteredCatalogs: catalogListings,
+    },
+  })
+
+  // Do not persist filters
+  client.writeQuery({
+    query: FILTERED_DEPARTMENTS,
+    data: { filteredDepartments: [] },
+  })
+
+  // Setup glider covers
+  const covers = catalogListings.map(
+    x => `http://cdn.catalogs.com/flagship/img/covers/full/${x.coverUrl}`
+  )
+  // console.log("Built glider covers", covers)
+  client.writeQuery({
+    query: GLIDER_COVERS,
+    data: { gliderCovers: covers },
+  })
+})

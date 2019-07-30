@@ -1,17 +1,38 @@
 import React from "react"
 import gql from "graphql-tag"
 import { client } from "apollo/client"
-import { GET_FILTERED_CATALOGS } from "apollo/queries"
+import { GET_CATALOGS } from "apollo/queries"
 import { departmentNameByNameUrl } from "utils/departments"
 
 import "styles/components/CatalogsList.scss"
+import { Mutation } from "react-apollo"
 
-const FilterItem = ({ name }) => {
+const FilterItem = ({ name, nameUrl }) => {
+  const UPDATE_FILTERED_DEPARTMENTS = gql`
+    mutation updateFilteredDepartments($name: String) {
+      updateFilteredDepartments(name: $name) @client
+    }
+  `
   return (
     <div className="clist__item">
       <div>
         <label className="w-checkbox">
-          <input className="w-checkbox-input" type="checkbox" />
+          <Mutation mutation={UPDATE_FILTERED_DEPARTMENTS}>
+            {mutate => {
+              return (
+                <input
+                  className="w-checkbox-input"
+                  type="checkbox"
+                  onClick={() =>
+                    mutate({
+                      variables: { name: nameUrl },
+                    })
+                  }
+                />
+              )
+            }}
+          </Mutation>
+
           <span className="hide w-form-label"></span>
         </label>
       </div>
@@ -22,57 +43,8 @@ const FilterItem = ({ name }) => {
 
 const buildFiltersFromCache = () => {
   try {
-    const { filteredCatalogs } = client.readQuery({
-      query: GET_FILTERED_CATALOGS,
-    })
-    console.log("Filtered", filteredCatalogs)
-  } catch (e) {
-    console.log("Get Filtered Failed", e)
-  }
-
-  // const query = gql`
-  //   query GetFilteredCatalogs {
-  //     filteredCatalogs @client {
-  //       coverUrl
-  //     }
-  //   }
-  // `
-
-  // client.writeQuery({
-  //   query: GET_FILTERED_CATALOGS,
-  //   data: {
-  //     filteredCatalogs: [
-  //       { coverUrl: "cover3", __typename: "FilteredCatalog" },
-  //       { coverUrl: "cover4", __typename: "FilteredCatalog" },
-  //     ],
-  //   },
-  // })
-
-  try {
     const { catalogListings } = client.readQuery({
-      query: gql`
-        query ReadCatalogs {
-          catalogListings(condition: { current: true, viewable: 0 }) {
-            coverUrl
-            class
-            current
-            departmentByPrimaryDepartment {
-              id
-              description
-              nameUrl
-              altText
-            }
-          }
-        }
-      `,
-    })
-
-    // Write all to filtered state cache
-    client.writeQuery({
-      query: GET_FILTERED_CATALOGS,
-      data: {
-        filteredCatalogs: catalogListings,
-      },
+      query: GET_CATALOGS,
     })
 
     const filters = []
@@ -94,11 +66,6 @@ const buildFiltersFromCache = () => {
       filters.push({ name, nameUrl })
     })
 
-    console.log("buildfilters", catalogListings, filters)
-
-    const updated = client.readQuery({ query: GET_FILTERED_CATALOGS })
-    console.log("######UPDATED", updated)
-
     return filters
   } catch (e) {
     return [{ name: "All Categories" }]
@@ -111,7 +78,7 @@ const CatalogsListFilter = () => {
     <div className="clist__categories">
       <div className="clist__categories_header">Categories</div>
       {filters.map((x, index) => {
-        return <FilterItem key={index} name={x.name} />
+        return <FilterItem key={index} name={x.name} nameUrl={x.nameUrl} />
       })}
     </div>
   )

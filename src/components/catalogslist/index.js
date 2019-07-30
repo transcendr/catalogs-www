@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Query } from "react-apollo"
 import CatalogsListFilter from "./ListFilter"
 import CatalogsList from "./CatalogsList"
-import { GET_CATALOGS } from "apollo/queries"
+import { GET_CATALOGS, GET_FILTERED_CATALOGS } from "apollo/queries"
 
 import "styles/components/CatalogsList.scss"
 
@@ -16,10 +16,10 @@ const Catalogs = () => {
   const [catalogs, setCatalogs] = useState([])
 
   const _setCatalogs = data => {
-    if (!data.catalogListings) return []
-    const { catalogListings } = data
-    setCatalogs(catalogListings)
-    return catalogListings
+    if (!data || !data.filteredCatalogs) return []
+    const { filteredCatalogs } = data
+    setCatalogs(filteredCatalogs)
+    return filteredCatalogs
   }
 
   return (
@@ -28,10 +28,9 @@ const Catalogs = () => {
         <div className="w-layout-grid grid">
           <CatalogsListFilter />
           <div className="clist__grid">
-            <Query query={GET_CATALOGS} notifyOnNetworkStatusChange>
+            <Query query={GET_FILTERED_CATALOGS} notifyOnNetworkStatusChange>
               {({ loading, error, data, refetch, networkStatus, _client }) => {
                 if (loading) return <LoadingCatalogs />
-                console.log("RETRIEVED DATA", data)
                 return <CatalogsList catalogs={_setCatalogs(data)} />
               }}
             </Query>

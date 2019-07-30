@@ -1,5 +1,10 @@
 import gql from "graphql-tag"
-import { SIDEBAR_OPEN, GET_FILTERED_CATALOGS } from "./queries"
+import {
+  SIDEBAR_OPEN,
+  GET_CATALOGS,
+  GET_FILTERED_CATALOGS,
+  FILTERED_DEPARTMENTS,
+} from "./queries"
 
 export const typeDefs = gql`
   type FilteredCatalog {
@@ -13,6 +18,7 @@ export const typeDefs = gql`
 
   extend type Mutation {
     toggleSidebar: Boolean
+    updateFilteredDepartments(name: String): [FilteredCatalog]
     setFilteredCatalogs: [FilteredCatalog]
   }
 `
@@ -34,9 +40,95 @@ export const resolvers = {
       cache.writeQuery({ query: SIDEBAR_OPEN, data })
       return data.sidebarOpen
     },
-    updateFilteredCatalogs: (_, { data }, { cache }) => {
-      cache.writeQuery({ query: GET_FILTERED_CATALOGS, data })
-      return data
+    updateFilteredDepartments: (_, { name }, { cache }) => {
+      let filteredCatalogs = [],
+        filteredDepartments = []
+
+      // Read currently selected department filters from cache
+      let { filteredDepartments: selectedDepartments } = cache.readQuery({
+        query: FILTERED_DEPARTMENTS,
+      })
+
+      // Assign currently selected to fd object
+      filteredDepartments = selectedDepartments // [automotive, babies, etc...]
+
+      // Check if the actioned item is already in the selected list
+      if (filteredDepartments.includes(name)) {
+        // Remove it from filtered departments
+        filteredDepartments = filteredDepartments.filter(x => x !== name)
+        // Write back to cache with updated list
+        cache.writeQuery({
+          query: FILTERED_DEPARTMENTS,
+          data: {
+            filteredDepartments,
+          },
+        })
+      } else {
+        // Add it to filtered depts
+        filteredDepartments.push(name)
+        // Write back to cache with updated list
+        cache.writeQuery({
+          query: FILTERED_DEPARTMENTS,
+          data: {
+            filteredDepartments,
+          },
+        })
+      }
+
+      // Update filtered catalogs
+      const { catalogListings: catalogs } = cache.readQuery({
+        query: GET_CATALOGS,
+      })
+
+      try {
+        // If unfiltered, set to all available catalogs
+        if (filteredDepartments.length === 0) {
+          filteredCatalogs = catalogs
+        } else {
+          // For each filter, retrieve matching dept catalogs
+          filteredDepartments.forEach(deptNameUrl => {
+            let matches = catalogs.filter(
+              x => x.departmentByPrimaryDepartment.nameUrl === deptNameUrl
+            )
+            filteredCatalogs = filteredCatalogs.concat(matches)
+          })
+        }
+      } catch (e) {
+        console.warn(e)
+      }
+
+      // Change each item's __typename
+      filteredCatalogs = filteredCatalogs.map(x => {
+        x.__typename = "FilteredCatalog"
+        return x
+      })
+
+      try {
+        // Write new filtered catalogs to cache
+        cache.writeQuery({
+          query: GET_FILTERED_CATALOGS,
+          data: {
+            filteredCatalogs,
+          },
+        })
+      } catch (e) {
+        console.warn(e)
+      }
+
+      return filteredCatalogs
+    },
+    updateFilteredCatalogs: (_, { data: filteredCatalogs }, { cache }) => {
+      try {
+        cache.writeQuery({
+          query: GET_FILTERED_CATALOGS,
+          data: {
+            filteredCatalogs,
+          },
+        })
+      } catch (e) {
+        console.warn(e)
+      }
+      return filteredCatalogs
     },
   },
 }
