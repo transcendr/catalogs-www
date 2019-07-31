@@ -58,7 +58,7 @@ client.query({ query: GET_CATALOGS }).then(result => {
 
   // Setup glider covers
   const covers = catalogListings.map(
-    x => `http://cdn.catalogs.com/flagship/img/covers/full/${x.coverUrl}`
+    x => `https://cdn.catalogs.com/flagship/img/covers/full/${x.coverUrl}`
   )
   client.writeQuery({
     query: GLIDER_COVERS,
