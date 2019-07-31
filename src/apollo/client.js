@@ -60,7 +60,6 @@ client.query({ query: GET_CATALOGS }).then(result => {
   const covers = catalogListings.map(
     x => `http://cdn.catalogs.com/flagship/img/covers/full/${x.coverUrl}`
   )
-  // console.log("Built glider covers", covers)
   client.writeQuery({
     query: GLIDER_COVERS,
     data: { gliderCovers: covers },

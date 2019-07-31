@@ -19,6 +19,7 @@ export const typeDefs = gql`
   extend type Mutation {
     toggleSidebar: Boolean
     updateFilteredDepartments(name: String): [FilteredCatalog]
+    filterByKeyword(keyword: String): [FilteredCatalog]
     setFilteredCatalogs: [FilteredCatalog]
   }
 `
@@ -103,6 +104,59 @@ export const resolvers = {
         return x
       })
 
+      try {
+        // Write new filtered catalogs to cache
+        cache.writeQuery({
+          query: GET_FILTERED_CATALOGS,
+          data: {
+            filteredCatalogs,
+          },
+        })
+      } catch (e) {
+        console.warn(e)
+      }
+
+      return filteredCatalogs
+    },
+    filterByKeyword: (_, { keyword }, { cache }) => {
+      const selectedCatalogs = []
+      // Retrieve all catalogs from cache
+      const { catalogListings: catalogs } = cache.readQuery({
+        query: GET_CATALOGS,
+      })
+      // Check match keyword to catalog props
+      catalogs.forEach(catalog => {
+        const {
+          catalogTitle,
+          departmentByPrimaryDepartment: { description, altText },
+        } = catalog
+        const checkMatch = string => {
+          const check = keyword.toLowerCase()
+          string = string.toLowerCase()
+          return string.includes(check)
+        }
+        if (
+          checkMatch(catalogTitle) ||
+          checkMatch(description) ||
+          checkMatch(altText)
+        ) {
+          selectedCatalogs.push(catalog)
+        }
+      })
+
+      // If there is no matches because keyword is empty
+      // return all catalogs
+      if (selectedCatalogs.length === 0 && !keyword) {
+        selectedCatalogs = catalogs
+      }
+
+      // Generate filtered catalogs array from matches w/ proper typename
+      const filteredCatalogs = selectedCatalogs.map(x => {
+        x.__typename = "FilteredCatalog"
+        return x
+      })
+
+      // Write filtered catalogs to cache
       try {
         // Write new filtered catalogs to cache
         cache.writeQuery({

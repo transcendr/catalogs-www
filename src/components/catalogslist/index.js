@@ -3,7 +3,14 @@ import { Query } from "react-apollo"
 import CatalogsListFilter from "./ListFilter"
 import CatalogsList from "./CatalogsList"
 import { GET_CATALOGS, GET_FILTERED_CATALOGS } from "apollo/queries"
-
+import {
+  Link,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll"
 import "styles/components/CatalogsList.scss"
 
 const LoadingCatalogs = () => (
@@ -24,6 +31,7 @@ const Catalogs = () => {
 
   return (
     <div className="catalogs_list">
+      <Element name="scrollToSearch" />
       <div className="clist__container">
         <div className="w-layout-grid grid">
           <CatalogsListFilter />

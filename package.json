@@ -26,6 +26,7 @@
     "node-sass": "^4.12.0",
     "postcss-preset-env": "^6.6.0",
     "prop-types": "^15.7.2",
+    "radium": "^0.25.2",
     "react": "^16.8.6",
     "react-apollo": "^2.5.8",
     "react-cover-carousel": "0.0.5",
@@ -33,6 +34,7 @@
     "react-helmet": "^5.2.1",
     "react-inlinesvg": "^0.8.4",
     "react-pose": "^4.0.8",
+    "react-scroll": "^1.7.12",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
@@ -52,7 +54,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build && sh ./_deploy/post-install.sh",
+    "postdeploy": "sh ./_deploy/post-install.sh",
     "develop": "gatsby develop",
+    "pdevelop": "gatsby develop && npm run postdeploy",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
