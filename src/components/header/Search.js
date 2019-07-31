@@ -2,21 +2,12 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Mutation } from "react-apollo"
 import gql from "graphql-tag"
-// import { animateScroll as scroll } from "react-scroll"
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll"
+import { scroller } from "react-scroll"
 
 import "styles/components/header.scss"
 
 const HeaderSearchField = () => {
   const scrollToTop = () => {
-    // scroll.scrollToTop({ duration: 250 })
     scroller.scrollTo("scrollToSearch", {
       duration: 250,
       delay: 0,

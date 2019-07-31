@@ -2,15 +2,8 @@ import React, { useState } from "react"
 import { Query } from "react-apollo"
 import CatalogsListFilter from "./ListFilter"
 import CatalogsList from "./CatalogsList"
-import { GET_CATALOGS, GET_FILTERED_CATALOGS } from "apollo/queries"
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll"
+import { GET_FILTERED_CATALOGS } from "apollo/queries"
+import { Element } from "react-scroll"
 import "styles/components/CatalogsList.scss"
 
 const LoadingCatalogs = () => (
