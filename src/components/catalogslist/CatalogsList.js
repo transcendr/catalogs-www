@@ -10,7 +10,7 @@ const CatalogItem = ({ catalog }) => {
         className="clist__catalog_image"
         alt="hi"
         style={{
-          backgroundImage: `url(http://cdn.catalogs.com/flagship/img/covers/full/${coverUrl})`,
+          backgroundImage: `url(https://cdn.catalogs.com/flagship/img/covers/full/${coverUrl})`,
         }}
       />
       <div className="clist__catalog_actions">
