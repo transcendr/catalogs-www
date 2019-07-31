@@ -9,7 +9,7 @@ import {
   GLIDER_COVERS,
 } from "apollo/queries"
 
-let apiBaseURL = `http://graphql.catalogshub.com/catalogs`
+let apiBaseURL = `https://gql.catalogshub.com/catalogs`
 
 const defaultClientData = {
   data: {
