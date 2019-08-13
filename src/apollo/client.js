@@ -14,6 +14,7 @@ let apiBaseURL = `https://gql.catalogshub.com/catalogs`
 const defaultClientData = {
   data: {
     sidebarOpen: false,
+    catalogListings: [],
     filteredCatalogs: [],
     filteredDepartments: [],
     filteredKeyword: "",

@@ -8,6 +8,7 @@
     "apollo-boost": "^0.4.3",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-cache-persist": "^0.1.1",
+    "classnames": "^2.2.6",
     "gatsby-image": "^2.2.3",
     "gatsby-plugin-create-client-paths": "^2.1.1",
     "gatsby-plugin-manifest": "^2.2.0",
@@ -33,6 +34,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-inlinesvg": "^0.8.4",
+    "react-masonry-component": "^6.2.1",
     "react-pose": "^4.0.8",
     "react-scroll": "^1.7.12",
     "styled-components": "^4.3.2"

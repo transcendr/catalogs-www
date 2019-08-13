@@ -8,7 +8,7 @@ const CatalogItem = ({ catalog }) => {
     <div className="clist__catalog">
       <div
         className="clist__catalog_image"
-        alt="hi"
+        alt={catalogTitle}
         style={{
           backgroundImage: `url(https://cdn.catalogs.com/flagship/img/covers/full/${coverUrl})`,
         }}
@@ -30,24 +30,6 @@ const CatalogItem = ({ catalog }) => {
     </div>
   )
 }
-
-// const catalogs = [
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-//   { name: `Macy's Department Store` },
-// ]
 
 const CatalogsList = ({ catalogs }) => (
   <>
