@@ -2,33 +2,26 @@ import React from "react"
 import { Query } from "react-apollo"
 import { GET_FILTERED_CATALOGS } from "apollo/queries"
 import Slider from "components/netflixslider"
-import { buildFiltersFromCache } from "../catalogslist/ListFilter"
 import { departmentNameByNameUrl } from "../../utils/departments"
 
 import "./AllDepartmentsSlider.scss"
 
 const DepartmentSlider = ({ department }) => {
+  const RenderNothing = () => <div></div>
   return (
     <Query query={GET_FILTERED_CATALOGS} notifyOnNetworkStatusChange>
       {({ loading, error, data, refetch, networkStatus, client }) => {
-        console.log("GETTING FILTERED CATALOGS", {
-          loading,
-          error,
-          data,
-          networkStatus,
-        })
-
         // Refetching
         if (networkStatus === 4) return <p>Loading...</p>
 
         // Loading
-        if (loading) return null
+        if (loading) return <RenderNothing />
 
         // Loaded
         const { filteredCatalogs } = data
 
         // If no catalogs, do not display slider component
-        if (filteredCatalogs.length === 0) return null
+        if (filteredCatalogs.length === 0) return <RenderNothing />
 
         // Map catalogs to slider component format
         const catalogs = []
@@ -48,7 +41,7 @@ const DepartmentSlider = ({ department }) => {
           }
         })
 
-        if (catalogs.length === 0) return null
+        if (catalogs.length === 0) return <RenderNothing />
 
         // Load slider with catalogs
         return (

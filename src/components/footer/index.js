@@ -1,7 +1,7 @@
 import React from "react"
 import "styles/components/Footer.scss"
 
-const MarketingBanner = () => (
+const Footer = () => (
   <div className="footer">
     <div className="footer__sections">
       <div className="footer__section __left">
@@ -87,4 +87,4 @@ const MarketingBanner = () => (
   </div>
 )
 
-export default MarketingBanner
+export default Footer

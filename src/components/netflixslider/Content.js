@@ -3,7 +3,7 @@ import IconCross from "./icons/IconCross"
 import "./Content.scss"
 
 const Content = ({ movie, onClose }) => (
-  <div className="content">
+  <div className="nflx-content">
     <div className="content__background">
       <div className="content__background__shadow" />
       <div
